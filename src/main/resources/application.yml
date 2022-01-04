@@ -6,3 +6,29 @@ spring:
           github:
             client-id: Iv1.771844c5eca95076
             client-secret: 59e057b681fa38e9fc4ab38d2a1407e37c381d85
+
+
+  application.name: thereads
+
+  data:
+    cassandra:
+      keyspace-name: main
+      username: olZZcNYskeGWgxFdipdUHONp
+      password: +ahiz-L8leES-tMWX79i8RO.kpT09S3nBCIaZQnaic1yI3PCJTfzZhJy78SvdeKI8,7m52hyNN.IWBfip_B.bSWoPG90t8wGz8EAOg-HPRoeE-50Y4xfPXh7fiDGRNaf
+      schema-action: create-if-not-exists
+      request:
+        timeout: 10s
+      connection:
+        connect-timeout: 10s
+        init-query-timeout: 10s
+  main:
+    allow-circular-references: true
+    
+datastax.astra:
+  secure-connect-bundle: secure-connect.zip
+
+astra.db:
+  id: 173df2fb-9e76-4cb8-9161-a5c39d3e48aa
+  region: us-east1
+  keyspace: main
+  application.token: AstraCS:olZZcNYskeGWgxFdipdUHONp:53fba4b731d73269ec150d5b1040ba6c3cafb31b4440b9d28fc7d3aa739173fc
