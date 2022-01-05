@@ -17,7 +17,7 @@
       crossorigin="anonymous"
     ></script> -->
 
-<title>Better Reads</title>
+<title>The Reads</title>
 </head>
 <body>
   <div class="container">
@@ -32,21 +32,6 @@
     <!-- <div th:insert="components/book-search :: search-panel"></div> -->
     
 <section class="content">
+    <h5 class="card-title display-1" th:text="${searchResult.numFound}">Number</h5>
 
-    <div class="card">
-      <div class="row g-0">
-        <div class="col-md-4">
-          <img th:src="${coverImage}"
-            class="img-fluid rounded-start" alt="...">
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title display-2" th:text="${book.name}">Name</h5>
-            <p class="card-text display-6" th:text="${book.authorNames}">Author name</p>
-            <p class="card-text" th:text="${book.description}">Book description</p>
-            <p class="card-text">Published Date: <small class="text-muted" th:text="${book.publishedDate}">2020-01-01</small></p>
-        </section>
-
-    </div>
-  </body>
 </html>
