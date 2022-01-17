@@ -2,13 +2,9 @@ package io.christian.thereads.userbooks;
 
 import java.time.LocalDate;
 
-import javax.persistence.Id;
-
-import org.springframework.data.cassandra.core.cql.PrimaryKeyType;
 import org.springframework.data.cassandra.core.mapping.CassandraType;
 import org.springframework.data.cassandra.core.mapping.Column;
 import org.springframework.data.cassandra.core.mapping.PrimaryKey;
-import org.springframework.data.cassandra.core.mapping.PrimaryKeyColumn;
 import org.springframework.data.cassandra.core.mapping.Table;
 import org.springframework.data.cassandra.core.mapping.CassandraType.Name;
 

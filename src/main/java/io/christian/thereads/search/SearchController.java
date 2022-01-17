@@ -3,8 +3,6 @@ package io.christian.thereads.search;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.fasterxml.jackson.annotation.JsonCreator.Mode;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
