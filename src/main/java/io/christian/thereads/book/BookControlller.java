@@ -14,6 +14,11 @@ import io.christian.thereads.userbooks.UserBooks;
 import io.christian.thereads.userbooks.UserBooksPrimaryKey;
 import io.christian.thereads.userbooks.UserBooksRepository;
 
+
+
+/**
+ * API responsible for returning html templates relating to books
+ */
 @Controller
 public class BookControlller {
     
@@ -25,7 +30,15 @@ public class BookControlller {
     @Autowired
     UserBooksRepository userBooksRepository;
 
-
+    /**
+     * 
+     * @param bookId Book Id from the Cassandra database, normally obtained by clicking 
+     * through a book card in the "search.html"
+     * @param model Utilized to pass data to html templates using thymeleaf,
+     * allowing for dynamic behavior
+     * @param principal OAuth object for verifying userId
+     * @return "book.html" if bookId is found in Cassandra, "book-not-found.html" otherwise
+     */
     @GetMapping(value = "/books/{bookId}")
     public String getBook(@PathVariable String bookId, Model model, @AuthenticationPrincipal OAuth2User principal) {
         Optional<Book> optionalBook = bookRepository.findById(bookId);

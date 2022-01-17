@@ -17,7 +17,7 @@
       crossorigin="anonymous"
     ></script> -->
 
-<title>Better Reads</title>
+<title th:text="${book.name} + ' - The Reads'"></title>
 </head>
 <body>
   <div class="container">
@@ -27,12 +27,9 @@
       
       </div>
     </nav>
-
-
-    <!-- <div th:insert="components/book-search :: search-panel"></div> -->
 <div th:insert="components/book-search :: search-panel"></div>
 <section class="content">
-
+    <!-- Card containing book, description and form if logged in -->
     <div class="card">
       <div class="row g-0">
         <div class="col-md-4">
@@ -45,7 +42,7 @@
             <p class="card-text display-6" th:text="${book.authorNames}">Author name</p>
             <p class="card-text" th:text="${book.description}">Book description</p>
             <p class="card-text">Published Date: <small class="text-muted" th:text="${book.publishedDate}">2020-01-01</small></p>
-            
+            <!-- Input fields for each book -->
             <form th:if="${loginId}" th:attr="action=@{/addUserBook}" method="POST">
               <input 
                 type="hidden" 

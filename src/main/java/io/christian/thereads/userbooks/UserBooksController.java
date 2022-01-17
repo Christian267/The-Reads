@@ -11,12 +11,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.servlet.ModelAndView;
 
+/**
+ * API responsible for writing into book_by_user_and_bookid table
+ */
 @Controller
 public class UserBooksController {
     
     @Autowired
     UserBooksRepository userBooksRepository;
 
+    /** 
+     * Writes the form input from "/books/{bookId}" into Cassandra. 
+     * @param formData The input form data from book.html contains 6 keys
+     * {"startDate", "completedDate", "rating", "status", "bookId", "_csrf"}
+     * @param principal OAuth2User instance, for finding userId
+     * @return redirects to original page, effectively refreshing "/book/{bookId}"
+    */
     @PostMapping("/addUserBook")
     public ModelAndView addBookForUser(
         @RequestBody MultiValueMap<String, String> formData,
@@ -28,12 +38,11 @@ public class UserBooksController {
 
         UserBooks userBooks = new UserBooks();
         UserBooksPrimaryKey key = new UserBooksPrimaryKey();
-        key.setUserId(principal.getAttribute("login"));
         String bookId = formData.getFirst("bookId");
+        key.setUserId(principal.getAttribute("login"));
         key.setBookId(bookId);
         
         userBooks.setKey(key);
-
         userBooks.setStartedDate(LocalDate.parse(formData.getFirst("startDate")));
         userBooks.setCompletedDate(LocalDate.parse(formData.getFirst("completedDate")));
         userBooks.setRating(Integer.parseInt(formData.getFirst("rating")));

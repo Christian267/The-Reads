@@ -13,6 +13,9 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import reactor.core.publisher.Mono;
 
+/**
+ * API responsible for search requests and returning search results
+ */
 @Controller
 public class SearchController {
 
@@ -20,6 +23,10 @@ public class SearchController {
 
     private final WebClient webClient;
 
+    /**
+     * Initialize webClient to access openlibrary API for searching
+     * @param webClientBuilder Spring reactive webClient
+     */
     public SearchController(WebClient.Builder webClientBuilder) {
         this.webClient = webClientBuilder.exchangeStrategies(ExchangeStrategies.builder()
         .codecs(configurer -> configurer
@@ -28,6 +35,12 @@ public class SearchController {
                 .build()).baseUrl("http://openlibrary.org/search.json").build();
     }
 
+    /**
+     * Searches the openlibrary API using the query uri
+     * @param query Contains the value entered in the search form component in "Components/book-search.html"
+     * @param model Contains keys {books} to be used in the "search.html" template using thymeleaf
+     * @return "search.html" template
+     */
     @GetMapping(value = "/search")
     public String getSearchResults(@RequestParam String query, Model model) {
         Mono<SearchResult> resultsMono = this.webClient.get()
