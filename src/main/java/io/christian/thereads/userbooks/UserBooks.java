@@ -34,22 +34,6 @@ public class UserBooks {
     @CassandraType(type = Name.INT)
     private int rating;
 
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getBookId() {
-        return bookId;
-    }
-
-    public void setBookId(String bookId) {
-        this.bookId = bookId;
-    }
-
     public LocalDate getStartedDate() {
         return startedDate;
     }
