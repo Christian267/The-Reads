@@ -10,6 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import io.christian.thereads.userbooks.UserBooks;
+import io.christian.thereads.userbooks.UserBooksPrimaryKey;
+import io.christian.thereads.userbooks.UserBooksRepository;
+
 @Controller
 public class BookControlller {
     
@@ -18,6 +22,8 @@ public class BookControlller {
     @Autowired
     BookRepository bookRepository;
 
+    @Autowired
+    UserBooksRepository userBooksRepository;
 
 
     @GetMapping(value = "/books/{bookId}")
@@ -33,7 +39,18 @@ public class BookControlller {
             model.addAttribute("book", book);
             
             if(principal != null && principal.getAttribute("login") != null) {
+                String userId = principal.getAttribute("login");
                 model.addAttribute("loginId", principal.getAttribute("login"));
+                UserBooksPrimaryKey key = new UserBooksPrimaryKey();
+                key.setBookId(bookId);
+                key.setUserId(userId);
+                Optional<UserBooks> userBooks = userBooksRepository.findById(key);
+                if (userBooks.isPresent()) {
+                    model.addAttribute("userBooks", userBooks.get());
+                } else {
+                    model.addAttribute("userBooks", new UserBooks());
+                }
+
             }
             return "book";
         }

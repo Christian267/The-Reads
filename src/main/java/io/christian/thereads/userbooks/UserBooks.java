@@ -19,20 +19,30 @@ public class UserBooks {
     private UserBooksPrimaryKey key; 
     
     @Column("started_date")
-    @CassandraType(type = Name.TEXT)
+    @CassandraType(type = Name.DATE)
     private LocalDate startedDate;
     
     @Column("completed_date")
-    @CassandraType(type = Name.TEXT)
+    @CassandraType(type = Name.DATE)
     private LocalDate completedDate;
     
     @Column("reading_status")
     @CassandraType(type = Name.TEXT)
-    private String readStatus;
+    private String readingStatus;
 
     @Column("rating")
     @CassandraType(type = Name.INT)
     private int rating;
+
+
+    
+    public UserBooksPrimaryKey getKey() {
+        return key;
+    }
+
+    public void setKey(UserBooksPrimaryKey key) {
+        this.key = key;
+    }
 
     public LocalDate getStartedDate() {
         return startedDate;
@@ -50,12 +60,12 @@ public class UserBooks {
         this.completedDate = completedDate;
     }
 
-    public String getReadStatus() {
-        return readStatus;
+    public String getReadingStatus() {
+        return readingStatus;
     }
 
-    public void setReadStatus(String readStatus) {
-        this.readStatus = readStatus;
+    public void setReadingStatus(String readingStatus) {
+        this.readingStatus = readingStatus;
     }
 
     public int getRating() {

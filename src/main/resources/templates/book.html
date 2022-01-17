@@ -51,24 +51,28 @@
                 type="hidden" 
                 th:name="${_csrf.parameterName}" 
                 th:value="${_csrf.token}" />
+                <input 
+                  type="hidden" 
+                  name="bookId" 
+                  th:value="${book.id}" />
               <div class="mb-3">
                 <label for="startDate" class="form-label">Start date</label>
-                <input type="date" class="form-control" id="startDate" placeholder="startDate">
+                <input type="date" class="form-control" id="startDate" name="startDate" th:value="${userBooks.startedDate}">
               </div>
               <div class="mb-3">
                 <label for="completedDate" class="form-label">Completed date</label>
-                <input type="date" class="form-control" id="completedDate" placeholder="completedDate">
+                <input type="date" class="form-control" id="completedDate" name="completedDate" th:value="${userBooks.completedDate}">
               </div>
               <div class="mb-3">
                 <label for="status" class="form-label">Status</label>
-                <select id="status" class="form-select" aria-label="Reading status">
+                <select id="status" class="form-select" name="status" aria-label="Reading status" th:field="${userBooks.readingStatus}">
                   <option selected value="0">Status</option>
                   <option value="reading">Currently Reading</option>
                   <option value="finished">Finished</option>
                   <option value="dnf">Did Not Finish</option>
                 </select>
                 <label for="rating" class="form-label">Rating</label>
-                <select id="rating" class="form-select" aria-label="Rating">
+                <select id="rating" class="form-select" name="rating" aria-label="Rating" th:value="${userBooks.rating}">
                   <option selected value="0">Select Rating</option>
                   <option value="1">&#9733;</option>
                   <option value="2">&#9733;&#9733;</option>
