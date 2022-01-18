@@ -20,6 +20,11 @@ public class UserBooksController {
     @Autowired
     UserBooksRepository userBooksRepository;
 
+    public UserBooksController(UserBooksRepository userBooksRepository) {
+        this.userBooksRepository = userBooksRepository;
+    }
+
+
     /** 
      * Writes the form input from "/books/{bookId}" into Cassandra. 
      * @param formData The input form data from book.html contains 6 keys
